@@ -5,7 +5,7 @@ class MainGame extends Phaser.Scene {
 
 
     init(data) {
-        this._data = data;
+        this.sys.game._data = { time : 1, food: 1};
 
     }
     constructor() {
@@ -19,6 +19,11 @@ class MainGame extends Phaser.Scene {
     }
 
     create() {
+        //comment out later
+        
+        this.sys.game._data.time =1; 
+        this.sys.game._data.food =1;
+        //coment out later end
         this.add.image(400,300, 'water');
         this.text = this.add.text(200,330,  "this is the Main Game" + "time: " + this.sys.game._data.time + " food: "+ this.sys.game._data.food);
         //scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000'});
@@ -52,6 +57,7 @@ class MainGame extends Phaser.Scene {
         });
       //  player.anims.play('left');
         cursors = this.input.keyboard.createCursorKeys();
+        
     }
 
     update() {

@@ -10,11 +10,11 @@ var config = {
         }
 
     }, 
-    scene: [ Splash , Time, Food, MainGame, GameOver]
-   // scene:[MainGame]
+   // scene: [ Splash , Time, Food, MainGame, GameOver]
+    scene:[MainGame]
 
 };
 var player;
 var cursors;
 var animations;
-var game = new Phaser.Game(config);
+var game = new Phaser.Game(config); 
