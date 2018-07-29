@@ -57,17 +57,37 @@ class MainGame extends Phaser.Scene {
         });
       //  player.anims.play('left');
         cursors = this.input.keyboard.createCursorKeys();
+        this.input.on('pointerdown', function(pointer){
+            console.log(strokeCountdown);
+            if (Math.floor(strokeCountdown/10)==0) {
 
+                this.player.anims.play('left', true);
+            this.tweens.add({
+                targets: this.player,
+                y: this.player.y -this.player.speed,
+                duration: 500,
+                ease: function (t) {
+                    return Math.pow(t, 3);
+                },
+                delay: 0,
+                onComplete: (tween, targets, myImage)=> {
+                    this.player.y-=this.player.speed;
+                    this.player.setVelocityX(0);
+                    this.player.anims.play('turn')
+                }
+             });
+            }
+        }, this );
         
     }
 
     update() {
  
          //   console.log(this.input.activePointer.isUp + 'oi');
-        strokeCountdown--;
+        
         if (strokeCountdown<0) strokeCountdown = 60;
-        countdownText.setText(Math.floor(strokeCountdown/10));
-        if (this.input.activePointer.isDown && strokeCountdown==0) {
+         countdownText.setText(Math.floor(strokeCountdown/10));
+     /*   if (this.input.activePointer.isDown && strokeCountdown==0) {
             console.log(this.input.activePointer.msSinceLastClick ) 
             this.player.anims.play('left', true);
             this.tweens.add({
@@ -87,12 +107,13 @@ class MainGame extends Phaser.Scene {
         } else {
             this.player.setVelocityX(0);
             this.player.anims.play('turn')
-        }
+        } */
 
         if (this.player.y < 50) {
 
             this.scene.start("GameOver")
         }
+        strokeCountdown--;
 
     }
 }
