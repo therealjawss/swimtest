@@ -57,6 +57,7 @@ class MainGame extends Phaser.Scene {
         });
       //  player.anims.play('left');
         cursors = this.input.keyboard.createCursorKeys();
+
         
     }
 
