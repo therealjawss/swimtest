@@ -51,13 +51,17 @@ function preload ()
   //  this.load.image('bomb', 'assets/bomb.png');
     this.load.image('bomb', 'assets/bombman.png');
     this.load.spritesheet('dude', 'assets/newdude2.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.image('J','assets/J.png');
+    this.load.image('R','assets/R.png');
+    this.load.image('L','assets/L.png');
+
 }
 
 function create ()
 {
     //  A simple background for our game
     this.add.image(400, 300, 'sky');
-
+ 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
 
@@ -130,7 +134,45 @@ function create ()
     this.physics.add.overlap(player, stars, collectStar, null, this);
 
     this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+       
+       var L = this.add.sprite(100, 550, 'L').setInteractive({ pixelPerfect: true });
+    L.setScale(0.5);
+    L.on('pointerdown',() =>{
+        cursors.left.isDown = true;
+        console.log('down');
+    });
+
+ L.on('pointerup',() =>{
+        cursors.left.isDown = false;
+        console.log('up');
+    });
+
+    var R = this.add.sprite(600, 550, 'R').setInteractive({ pixelPerfect: true });
+    R.setScale(0.5);
+    R.on('pointerdown',() =>{
+        cursors.right.isDown = true;
+        console.log('down');
+    });
+
+    R.on('pointerup',() =>{
+        cursors.right.isDown = false;
+        console.log('up');
+    });
+    var J = this.add.sprite(680, 550, 'J').setInteractive({ pixelPerfect: true });
+    J.setScale(0.5);
+    J.on('pointerdown',() =>{
+        cursors.up.isDown = true;
+        console.log('down');
+    });
+
+    J.on('pointerup',() =>{
+        cursors.up.isDown = false;
+        console.log('up');
+    });
+
 }
+
 
 function update ()
 {
